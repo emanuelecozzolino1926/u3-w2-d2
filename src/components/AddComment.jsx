@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const AddComment = ({ asin }) => {
+const AddComment = (props) => {
   // state = {
   //   comment: {
   //     comment: '',
@@ -13,7 +13,7 @@ const AddComment = ({ asin }) => {
   const [comment, setComment] = useState({
     comment: "",
     rate: 1,
-    elementId: asin,
+    elementId: props.asin,
   });
 
   // componentDidUpdate(prevProps) {
@@ -29,9 +29,9 @@ const AddComment = ({ asin }) => {
   useEffect(() => {
     setComment((currentComment) => ({
       ...currentComment,
-      elementId: asin,
+      elementId: props.asin,
     }));
-  }, [asin]);
+  }, [props.asin]);
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const AddComment = ({ asin }) => {
         setComment({
           comment: "",
           rate: 1,
-          elementId: asin,
+          elementId: props.asin,
         });
       } else {
         throw new Error("Qualcosa è andato storto");
